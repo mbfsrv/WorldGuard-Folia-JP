@@ -41,6 +41,18 @@ jobs:
         ./script.sh updateUpstream
         ./script.sh applyPatches
 
+    - name: Fix PaperInterop checkstyle violations
+      shell: bash
+      run: |
+        FILE="WorldGuard-Patchs/worldguard-bukkit/src/main/java/com/sk89q/worldguard/bukkit/util/PaperInterop.java"
+        if [ -f "$FILE" ]; then
+          sed -i '/org.jetbrains.annotations.NotNull/d' "$FILE"
+          sed -i '/org.jetbrains.annotations.Nullable/d' "$FILE"
+          if ! grep -q 'private PaperInterop()' "$FILE"; then
+            perl -0pi -e 's/public final class PaperInterop \{\n/public final class PaperInterop {\n\n    private PaperInterop() {\n        throw new AssertionError("No instances");\n    }\n/s' "$FILE"
+          fi
+        fi
+
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
