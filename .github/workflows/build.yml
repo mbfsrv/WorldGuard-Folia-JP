@@ -46,10 +46,10 @@ jobs:
       run: |
         FILE="WorldGuard-Patchs/worldguard-bukkit/src/main/java/com/sk89q/worldguard/bukkit/util/PaperInterop.java"
         if [ -f "$FILE" ]; then
-          sed -i '/org.jetbrains.annotations.NotNull/d' "$FILE"
-          sed -i '/org.jetbrains.annotations.Nullable/d' "$FILE"
+          sed -i '/^import org\.jetbrains\.annotations\.NotNull;$/d' "$FILE"
+          sed -i '/^import org\.jetbrains\.annotations\.Nullable;$/d' "$FILE"
           if ! grep -q 'private PaperInterop()' "$FILE"; then
-            perl -0pi -e 's/public final class PaperInterop \{\n/public final class PaperInterop {\n\n    private PaperInterop() {\n        throw new AssertionError("No instances");\n    }\n/s' "$FILE"
+            perl -0pi -e 's/public final class PaperInterop \{\r?\n/public final class PaperInterop {\n\n    private PaperInterop() {\n        throw new AssertionError("No instances");\n    }\n/s' "$FILE"
           fi
         fi
 
