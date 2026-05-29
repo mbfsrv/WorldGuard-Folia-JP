@@ -6,12 +6,12 @@
 https://github.com/Euphillya/WorldGuard-Folia
 
 ### 2.WorldGuardの一般プレイヤーさんが触る部分だけを軽く日本語訳したリポジトリ
-https://github.com/yamak493/WorldGuard-JP
+https://github.com/mbfsrv/WorldGuard-JP
 
 これら2つのリポジトリを統合させてGitHub Actions上でビルドするために作成しました。
 
 ## ダウンロード
-[ここから](https://github.com/yamak493/WorldGuard-Folia-JP/actions)
+[ここから](https://github.com/mbfsrv/WorldGuard-Folia-JP/actions)
 
 ## 仕組み
 WorldGuard-Foliaをインポートし、WorldGuard-JPをサブモジュールとしてコピーし、WorldGuard-Foliaのパッチを開始する。
